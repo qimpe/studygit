@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Анкеты{% endblock %}
+{% block postspage-active %}active{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between m-3">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Фильтры
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Английский'; document.getElementById('filterbtn').click();">Английский</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Немецкий'; document.getElementById('filterbtn').click();">Немецкий</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Испанский'; document.getElementById('filterbtn').click();">Испанский</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Другой язык'; document.getElementById('filterbtn').click();">Другой язык</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Подготовка к ЕГЭ'; document.getElementById('filterbtn').click();">Подготовка к ЕГЭ</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Подготовка к ОГЭ'; document.getElementById('filterbtn').click();">Подготовка к ОГЭ</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Подготовка к международному экзамену'; document.getElementById('filterbtn').click();">Подготовка к международным экзаменам</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Программирование'; document.getElementById('filterbtn').click();">Программирование</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Общие цели'; document.getElementById('filterbtn').click();">Общие цели</a></li>
+            <li><a class="dropdown-item" href="#"  onclick="document.getElementById('filterSearch').value='Друг'; document.getElementById('filterbtn').click();">Друг</a></li>
+            <li><a class="dropdown-item" href="#" onclick="document.getElementById('filterSearch').value='Спорт'; document.getElementById('filterbtn').click();">Спорт</a></li>
+              <form action="{% url 'postslink' %}" class="d-none" method="get">
+                  <input type="search" id="filterSearch" name="filter">
+                  <input type="submit" class="btn" id="filterbtn">
+              </form>
+          </ul>
+        </div>
+        <a class="btn btn-primary" href="{% url 'postslink' %}">Обновить</a>
+    </div>
+
+    <div class="m-3">
+        <div class="row g-2">
+            <p class="fs-5 fw-bold text-center">{{ infoText }}</p>
+            {% for i in posts %}
+            <div class="col-12 col-md-7 text-justify ">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <span>{{ i.title }}</span>
+                    </div>
+                    <div class="card-body text-justify">
+                        <p><b>Обо мне: </b>{{ i.about }}</p>
+                        <p><b>Кого я ищу: </b>{{ i.goalperson }}</p>
+                        <p><b>Дополнительно: </b>{{ i.additional }}</p>
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-success" href="{% url 'posts-detail' i.id %}">
+                                Перейти к посту
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

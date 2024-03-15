@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %} Главная {% endblock %}
+{% block homepage-active %}active{% endblock %}
+
+{% block body %}
+<div class="m-3">
+    <div class="d-block d-md-none text-center display-4 fw-bold mb-2">
+        Начните новое хобби с <span class="text-primary">нового</span> друга
+    </div>
+    <div class="row g-1 d-flex align-items-center">
+        <div class="col-6">
+            <div class="card h-100 border-0">
+                <div class="h-50 align-items-end d-none d-md-flex">
+                    <h5 class="display-3 fw-bold">Начните новое хобби с&nbsp;<span class="text-primary">нового</span>&nbsp;друга.</h5>
+                </div>
+                <p class="fs-3 fw-medium">Even <mark>now</mark>, your enemies are eagerly flipping through books</p>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card h-100 border-0">
+                <img src="{% static 'homepagepicture.svg' %}" alt="." class="align-self-center img-fluid" style="width: 80%; box-shadow: 10px 5px 5px grey;">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
