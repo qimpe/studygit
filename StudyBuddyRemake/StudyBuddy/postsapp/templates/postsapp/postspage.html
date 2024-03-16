@@ -28,7 +28,7 @@
               </form>
           </ul>
         </div>
-        <a class="btn btn-primary" href="{% url 'postslink' %}">Обновить</a>
+        <a class="btn btn-outline-info" href="{% url 'postslink' %}">Обновить</a>
     </div>
 
     <div class="m-3">
@@ -54,5 +54,9 @@
             </div>
             {% endfor %}
         </div>
+    </div>
+
+    <div class="me-3 sticky-bottom d-flex justify-content-end pb-3">
+        <a href="#" class="btn btn-primary">Опубликовать</a>
     </div>
 {% endblock %}
