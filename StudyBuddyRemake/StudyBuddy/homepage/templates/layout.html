@@ -26,7 +26,7 @@
                   <a class="nav-link {% block postspage-active %}{% endblock %}" href="{% url 'postslink' %}">Анкеты</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link {% block chosenpage-active %}{% endblock %}" href="{% url 'bookmark'%}">Закладки</a>
+                  <a class="nav-link {% block bookmark-active %}{% endblock %}" href="{% url 'bookmark' %}">Закладки</a>
                 </li>
               </ul>
                 <form class="d-flex align-self-end" role="search" action="{% url 'postslink' %}">
