@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 
 def bookmark(request):
-    return HttpResponse()
+    return render(request, "bookmark.html")
