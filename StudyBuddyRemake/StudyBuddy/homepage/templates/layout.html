@@ -28,6 +28,9 @@
                 <li class="nav-item">
                   <a class="nav-link {% block bookmark-active %}{% endblock %}" href="{% url 'bookmark' %}">Закладки</a>
                 </li>
+                  <li class="nav-item">
+                      <a href="{% url 'users:logout' %}" class="nav-link">Выйти</a>
+                  </li>
               </ul>
                 <form class="d-flex align-self-end" role="search" action="{% url 'postslink' %}">
                   <input class="form-control me-2" type="search" placeholder="Анкеты" aria-label="Search" name="postsSearchArea">
