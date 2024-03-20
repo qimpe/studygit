@@ -1,16 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <div>
-    <h2>Анкета</h2>
-    <p><b>Тема:</b> {{ post.title }}</p>
-    <p><b>О себе:</b> {{post.about}}</p>
-    <p><b>Имя:</b> {{post.author}}</p>
-    <p><b>Название:</b> {{post.title}}</p>
-    <p><b>О чем:</b> {{post.about}}</p> 
-    <p><b>Цель:</b> {{post.goalperson}}</p> 
-    <p><b>Дополнительно:</b> {{post.additional}}</p>
-    <p><b>Тэги:</b> {{post.tags}}</p>
-    <p><b>Дата публикации:</b> {{post.published_date}} </p>
+    <div class="col-12 col-md-7 m-3">
+        <div class="card">
+            <h2 class="card-header">{{ post.title }}</h2>
+            <div class="m-3 fs-6">
+                <p><b>О себе:</b> {{post.about}}</p>
+                <p><b>Ищу:</b> {{post.goalperson}}</p>
+                <p><b>Дополнительно:</b> {{post.additional}}</p>
+                <p><b>Тэги:</b> {{post.tags}}</p>
+                <p><b>Имя:</b> {{post.author}}</p>
+                <p><b>Дата публикации:</b> {{post.published_date}} </p>
+            </div>
+        </div>
     </div>
 {% endblock %}

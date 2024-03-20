@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
-from .forms import LoginUserForm
+from .forms import LoginUserForm, RegisterUserForm
 
 
 class LoginUser(LoginView):
@@ -41,3 +41,15 @@ class LoginUser(LoginView):
 # def logout_user(request):
 #     logout(request)
 #     return HttpResponseRedirect(reverse('users:login'))
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterUserForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return render(request, 'login.html')
+    else:
+        form = RegisterUserForm
+    return render(request, 'register.html', {'form': form})
