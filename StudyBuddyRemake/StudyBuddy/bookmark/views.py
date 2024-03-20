@@ -15,11 +15,16 @@ def bookmark(request):
     post_ids = []
     for post in favorite_posts.values():
         post_ids.append(post["post_id"])
+        posts = Post.objects.get(pk=post_id)
 
     favorite_posts_dict["posts"] = post_ids
     print(favorite_posts_dict)
     for post in favorite_posts_dict.items():
         print(post[1])
+
+    
+
+    
     return render(request, "bookmark.html", favorite_posts_dict)
     """favorite_posts = FavoritePost.objects.all().filter(user_id=request.user.id)
     post_ids = favorite_posts.values_list("post_id", flat=True)
