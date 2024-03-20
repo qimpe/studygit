@@ -13,7 +13,7 @@ class LoginUser(LoginView):
     extra_context = {'title': 'Авторизация'}
 
     def get_success_url(self):
-        return reverse_lazy('homepage')
+        return reverse_lazy('create')
 
 # Create your views here.
 # def login_user(request):
@@ -38,9 +38,9 @@ class LoginUser(LoginView):
 #     }
 #     return render(request, 'login.html', data)
 
-# def logout_user(request):
-#     logout(request)
-#     return HttpResponseRedirect(reverse('users:login'))
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('users:login'))
 
 def register(request):
     if request.method == 'POST':
@@ -49,7 +49,7 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            return render(request, 'login.html')
+            return render(request, 'createPost.html')
     else:
         form = RegisterUserForm
     return render(request, 'register.html', {'form': form})
