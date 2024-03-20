@@ -3,12 +3,12 @@ active{% endblock %} {% block body %}
 <div class="m-3">
   <div class="row g-2">
     <p class="fs-5 fw-bold text-center">{{ infoText }}</p>
-    {% for i in posts %}
+    {% for post in posts %}
     <div class="card-body text-justify">
       <div class="col-12 col-md-7 text-justify">
         <div class="card shadow">
           <div class="card-header">
-            <p><b>Тема:</b> {{ post.title }} post_id</p>
+            <p><b>Тема:</b> {{ post.title }} </p>
           </div>
           <div class="card-body text-justify">
             <p><b>О себе:</b> {{post.about}} </p>
@@ -22,11 +22,11 @@ active{% endblock %} {% block body %}
             <div class="d-flex justify-content-end"></div>
             <hr />
             <button type="button" class="btn btn-dark">Нравиться</button>
-
           </div>
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
 </div>
 

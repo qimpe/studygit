@@ -6,21 +6,24 @@ from postsapp.models import Post
 
 
 def bookmark(request):
-    favorite_posts = (
-        FavoritePost.objects.all()
-        .filter(user_id=request.user.id)
-        .values("user_id", "post_id")
+    favorite_posts = FavoritePost.objects.filter(user_id=request.user.id).values(
+        "user_id", "post_id"
     )
+    # for i in favorite_posts:
+    # posts = Post.objects.get(pk="post_id")
+
     favorite_posts_dict = {}
     post_ids = []
     for post in favorite_posts.values():
-        post_ids.append(post["post_id"])
+        post_id = post["post_id"]
+        posts = Post.objects.get(pk=post_id)
 
     favorite_posts_dict["posts"] = post_ids
     print(favorite_posts_dict)
     for post in favorite_posts_dict.items():
         print(post[1])
-    return render(request, "bookmark.html", favorite_posts_dict)
+    return render(request, "bookmark.html", {"posts": posts})
+
     """favorite_posts = FavoritePost.objects.all().filter(user_id=request.user.id)
     post_ids = favorite_posts.values_list("post_id", flat=True)
     posts = Post.objects.all().filter(id__in=post_ids)
