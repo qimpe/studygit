@@ -24,6 +24,7 @@ def bookmark(request):
         print(post[1])
     return render(request, "bookmark.html", {"posts": posts})
 
+    # return render(request, "bookmark.html", favorite_posts_dict)
     """favorite_posts = FavoritePost.objects.all().filter(user_id=request.user.id)
     post_ids = favorite_posts.values_list("post_id", flat=True)
     posts = Post.objects.all().filter(id__in=post_ids)
