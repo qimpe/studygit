@@ -39,3 +39,6 @@ class postsDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['post'].title
         return context
+
+def create(request):
+    return render(request, 'postsapp/createPost.html')

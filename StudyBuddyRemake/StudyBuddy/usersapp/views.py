@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
-from .forms import LoginUserForm
+from .forms import LoginUserForm, RegisterUserForm
 
 
 class LoginUser(LoginView):
