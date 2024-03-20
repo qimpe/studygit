@@ -3,26 +3,30 @@ active{% endblock %} {% block body %}
 <div class="m-3">
   <div class="row g-2">
     <p class="fs-5 fw-bold text-center">{{ infoText }}</p>
-    <div class="card-body text-justify">
-      <div class="col-12 col-md-7 text-justify">
-        <div class="card shadow">
-          <div class="card-header">
-            <p><b>Тема:</b> {{ post.title }}</p>
-          </div>
-          <div class="card-body text-justify">
-            <p><b>О себе:</b> {{post.about}}</p>
-            <p><b>Имя:</b> {{post.author}}</p>
-            <p><b>Название:</b> {{post.title}}</p>
-            <p><b>О чем:</b> {{post.about}}</p>
-            <p><b>Цель:</b> {{post.goalperson}}</p>
-            <p><b>Дополнительно:</b> {{post.additional}}</p>
-            <p><b>Тэги:</b> {{post.tags}}</p>
-            <p><b>Дата публикации:</b> {{post.published_date}}</p>
-            <div class="d-flex justify-content-end"></div>
-          </div>
+    <!--{% for post in posts %}-->
+    <div class="col-12 col-md-7 text-justify">
+      <div class="card shadow">
+        <div class="card-header">
+          <p><b>Тема:</b> {{ post.title }} </p>
+        </div>
+        <div class="card-body text-justify">
+          <p><b>О себе:</b> {{post.about}} </p>
+          <p><b>Имя:</b> {{post.author}}</p>
+          <p><b>Название:</b> {{post.title}}</p>
+          <p><b>О чем:</b> {{post.about}}</p>
+          <p><b>Цель:</b> {{post.goalperson}}</p>
+          <p><b>Дополнительно:</b> {{post.additional}}</p>
+          <p><b>Тэги:</b> {{post.tags}}</p>
+          <p><b>Дата публикации:</b> {{post.published_date}}</p>
+          <div class="d-flex justify-content-end"></div>
+          <hr />
+          <button type="button" class="btn btn-dark">Нравиться</button>
         </div>
       </div>
     </div>
   </div>
+  <!--{% endfor %}-->
 </div>
+</div>
+
 {% endblock body %}
