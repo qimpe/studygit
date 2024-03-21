@@ -16,7 +16,7 @@ class LoginUser(LoginView):
     extra_context = {'title': 'Авторизация'}
 
     def get_success_url(self):
-        return reverse_lazy('create')
+        return reverse_lazy('postslink')
 
 # Create your views here.
 # def login_user(request):
@@ -72,7 +72,7 @@ class ProfileUser(LoginRequiredMixin, UpdateView):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             user.save()
-            return render(request, 'createPost.html')
+            return render(request, 'profile.html')
     else:
         form = RegisterUserForm
     return render(request, 'register.html', {'form': form})"""

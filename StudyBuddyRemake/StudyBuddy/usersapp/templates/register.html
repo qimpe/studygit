@@ -1,18 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-
-<h1>Регистрация</h1>
-
-<form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}" />
-    <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
-    <p><button type="submit">Регистрация</button></p>
-</form>
+<div class="d-flex justify-content-center p-3">
+    <div class="col-10 col-md-8 col-lg-6 col-xxl-4">
+        <div class="card p-3">
+            <h1 class="align-self-center">Регистрация</h1><br>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}" />
+                <div class="form-error text-warning">{{ form.non_field_errors }}</div>
+                {% for f in form %}
+                <p class="fs-5 fw-medium">{{ f.label }}</p>
+                <p>{{ f }}</p><span class="form-error text-warning">{{ f.errors }}</span><br>
+                {% endfor %}
+                <div class="form-error">{{ f.errors }}</div>
+                <p><button class="btn btn-success" type="submit">Зарегистрироваться</button></p>
+                <p class="fs-6 fw-medium">Уже есть аккаунт?  <a href="{% url 'users:login' %}">Войти</a></p>
+            </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
