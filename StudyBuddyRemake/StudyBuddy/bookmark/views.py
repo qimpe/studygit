@@ -7,45 +7,15 @@ from icecream import ic
 
 
 def bookmark(request):
-    """favorite_posts = FavoritePost.objects.filter(user_id=request.user.id).values(
-        "user_id", "post_id"
-    )
-    # ic(favorite_posts)
-    for i in favorite_posts:
-        # posts = Post.objects.get(pk=int("post_id"))
-        posts = Post.objects.get(id="post_id")
-    ic(posts)
+    favorite_posts = FavoritePost.objects.all().filter(
+        user_id=request.user.id
+    )  # получаем список избранных постов у пользователя
 
-    print("post id is == ", "post_id")
-    favorite_posts_dict = {}
-    post_ids = []
-    for post in favorite_posts.values():
-        post_id = post["post_id"]
-        posts = Post.objects.get(pk=post_id)
-        print(posts)
-    favorite_posts_dict["posts"] = post_ids
-    print(favorite_posts_dict)
-    for post in favorite_posts_dict.items():
-        print(post[1])
-    return render(request, "bookmark.html", {"posts": posts})"""
-
-    # return render(request, "bookmark.html", favorite_posts_dict)
-    """favorite_posts = FavoritePost.objects.all().filter(user_id=request.user.id)
-    post_ids = favorite_posts.values_list("post_id", flat=True)
-    posts = Post.objects.all().filter(id__in=post_ids)
-    print(posts)"""
-
-    favorite_posts = FavoritePost.objects.filter(user_id=request.user.id).values(
-        "user_id", "post_id"
-    )
-    ids = []
-    for i in favorite_posts:
-        ids.append(i["post_id"])
-    ic(ids)
-    for i in ids:
-        posts = Post.objects.get(pk=i)
-    data = {"posts": posts}
-    return redirect(request, "bookmark.html", data)
+    related_posts = [favorite.post for favorite in favorite_posts]
+    # favorite - queryset
+    # favorite.post отсылка класс Post
+    ic(related_posts)
+    return render(request, "bookmark.html", {"data": related_posts})
 
 
 def add_to_favorite(request, post_id=0):
