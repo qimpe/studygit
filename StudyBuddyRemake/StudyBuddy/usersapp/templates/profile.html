@@ -2,16 +2,38 @@
 
 {% block body %}
 
-<h1>Профиль</h1>
+    <div class="row row-cols-1 row-cols-md-2 g-3 m-3 align-items-center">
+        <div class="col">
+            <div class="card p-3">
+                <h1 class="align-self-center">Профиль</h1><br>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-error text-warning">{{ form.non_field_errors }}</div>
+                    {% for f in form %}
+                    <p class="fs-5 fw-medium">{{ f.label }}</p>
+                    <p>{{ f }}</p><br>
+                    {% endfor %}
+                    <button class="btn btn-success mb-3" type="submit">Сохранить</button>
+                    <div class="d-flex justify-content-end"><a class="btn" href="{% url 'users:logout' %}">Выйти из аккаунта</a></div>
+                </form>
+            </div>
+        </div>
 
-<form method="post">
-    {% csrf_token %}
-    <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
-    <p><button type="submit">Сохранить</button></p>
-</form>
+        <div class="col">
+            <div class="card p-3">
+                <h1 class="align-self-center">Анкета</h1><br>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-error text-warning">{{ form.non_field_errors }}</div>
+                    {% for f in form %}
+                    <p class="fs-5 fw-medium">{{ f.label }}</p>
+                    <p>{{ f }}</p><br>
+                    {% endfor %}
+                    <button class="btn btn-success mb-3" type="submit">Сохранить</button>
+                    <button class="btn btn-primary mb-3" type="submit">Опубликовать</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

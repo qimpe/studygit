@@ -95,7 +95,7 @@
 </div>
 
 <div class="me-3 sticky-bottom d-flex justify-content-end pb-3">
-  <a href="{% if user.is_authenticated %}#{% else %}{% url 'users:login' %}{% endif %}"
+  <a href="{% if user.is_authenticated %}{% url 'users:profile' %}{% else %}{% url 'users:login' %}{% endif %}"
     class="btn btn-primary">Опубликовать</a>
 </div>
 {% endblock %}
