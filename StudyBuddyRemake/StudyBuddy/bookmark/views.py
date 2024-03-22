@@ -18,14 +18,14 @@ def bookmark(request):
     return render(request, "bookmark.html", {"data": related_posts})
 
 
-def add_to_favorite(request, post_id=0):
+def add_to_favorite(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     favorite_post = FavoritePost.objects.create(user=request.user, post=post)
     favorite_post.save()
     return redirect("posts-detail", pk=post_id)
 
 
-def delete_from_favorite(request, post_id=0):
+def delete_from_favorite(request, post_id):
     favorite_posts = FavoritePost.objects.filter(
         user_id=request.user.id, post_id=post_id
     ).delete()

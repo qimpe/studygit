@@ -95,3 +95,9 @@
 </div>
 
 {% endblock %}
+{% block publish %}
+<div class="d-flex justify-content-end sticky-bottom p-3">
+  <a href="{% if user.is_authenticated %}{% url 'users:profile' %}{% else %}{% url 'users:login' %}{% endif %}"
+    class="btn btn-primary">Опубликовать</a>
+</div>
+{% endblock %}
