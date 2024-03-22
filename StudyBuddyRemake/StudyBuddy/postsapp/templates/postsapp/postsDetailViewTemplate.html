@@ -9,7 +9,7 @@
             <p><b>Тема:</b> {{ post.title }}</p>
           </div>
           <div class="card-body text-justify">
-            <p><b>О себе:</b> {{post.id}}</p>
+            <p><b>О себе:</b> {{post.id}} </p>
             <p><b>О себе:</b> {{post.about}}</p>
             <p><b>Имя:</b> {{post.author}}</p>
             <p><b>Название:</b> {{post.title}}</p>
@@ -20,13 +20,18 @@
             <p><b>Дата публикации:</b> {{post.published_date}}</p>
             <div class="d-flex justify-content-end"></div>
             <hr />
-            <a class="btn btn-success" href="{% url 'add_to_favorite' post_id=post.id %}">
-              Нравится
-            </a>
+            {% if favorite %}
+            <a class="btn btn-success" href="{% url 'delete_from_favorite' post_id=post.id %}">Удалить</a>
+            {% else %}
+            <a class="btn btn-success" href="{% url 'add_to_favorite' post_id=post.id %}">Нравится</a>
+            {% endif %}
+
           </div>
         </div>
       </div>
+
     </div>
+
   </div>
 </div>
 {% endblock body %}

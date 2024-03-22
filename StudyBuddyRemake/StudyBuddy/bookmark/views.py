@@ -29,8 +29,15 @@ def delete_from_favorite(request, post_id=0):
     favorite_posts = FavoritePost.objects.filter(
         user_id=request.user.id, post_id=post_id
     ).delete()
+    return redirect("posts-detail", pk=post_id)
 
 
-"""def is_in_favorite(post_id):
-    is_exists = FavoritePost.objects.filter(post_id=post_id).exists()
-    ic(is_exists)"""
+def is_in_favorite(request, post_id):
+    post = Post.objects.get(pk=post_id)
+    favorite = FavoritePost.objects.filter(
+        user_id=request.user.id, post_id=post_id
+    ).exists()
+    ic(favorite)
+    data = {"post": post, "favorite": favorite}
+    ic(data)
+    return render(request, "posts-detail.html", data)
