@@ -20,7 +20,7 @@ active{% endblock %} {% block body %}
           <p><b>Дата публикации:</b> {{post.published_date}} {{i.published_date}}</p>
           <div class="d-flex justify-content-end"></div>
           <hr />
-          <button type="button" class="btn btn-dark">Нравиться</button>
+          <a class="btn btn-success" href="{% url 'delete_from_favorite' post_id=i.id %}">Удалить</a>
         </div>
       </div>
     </div>
