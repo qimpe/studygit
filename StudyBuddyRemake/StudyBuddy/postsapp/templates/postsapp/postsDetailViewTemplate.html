@@ -20,7 +20,7 @@
             <p><b>Дата публикации:</b> {{post.published_date}}</p>
             <div class="d-flex justify-content-end"></div>
             <hr />
-            {% if favorite %}
+            {% if {favorite} %}
             <a class="btn btn-success" href="{% url 'delete_from_favorite' post_id=post.id %}">Удалить</a>
             {% else %}
             <a class="btn btn-success" href="{% url 'add_to_favorite' post_id=post.id %}">Нравится</a>
