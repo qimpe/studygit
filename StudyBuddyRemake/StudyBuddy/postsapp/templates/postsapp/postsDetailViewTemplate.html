@@ -1,37 +1,36 @@
 {% extends 'layout.html' %} {% load static %} {% block body %}
 <div class="m-3">
   <div class="row g-2">
-    <p class="fs-5 fw-bold text-center">{{ infoText }}</p>
-    <div class="card-body text-justify">
-      <div class="col-12 col-md-7 text-justify">
-        <div class="card shadow">
-          <div class="card-header">
-            <p><b>Тема:</b> {{ post.title }}</p>
-          </div>
-          <div class="card-body text-justify">
-            <p><b>О себе:</b> {{post.id}} </p>
-            <p><b>О себе:</b> {{post.about}}</p>
-            <p><b>Имя:</b> {{post.author}}</p>
-            <p><b>Название:</b> {{post.title}}</p>
-            <p><b>О чем:</b> {{post.about}}</p>
-            <p><b>Цель:</b> {{post.goalperson}}</p>
-            <p><b>Дополнительно:</b> {{post.additional}}</p>
-            <p><b>Тэги:</b> {{post.tags}}</p>
-            <p><b>Дата публикации:</b> {{post.published_date}}</p>
-            <div class="d-flex justify-content-end"></div>
-            <hr />
-            {% if is_in_favorite %}
-              <a class="btn btn-success" href="{% url 'delete_from_favorite' post_id=post.id %}">Удалить</a>
+    <div class="col-12 col-md-7 text-justify">
+      <div class="card shadow">
+        <div class="card-header">
+          <span class="fs-6 fw-medium">{{ post.title }}</span>
+        </div>
+        <div class="card-body text-justify">
+          <p class="fs-6"><b>Обо мне: </b> {{post.about}}</p>
+          <p class="fs-6"><b>Кого я ищу: </b> {{post.goalperson}}</p>
+          <p class="fs-6"><b>Дополнительно: </b> {{post.additional}}</p>
+          <p class="opacity-50"><b>Тэги:</b> {{post.tags}}</p>
+          <p class="opacity-50"><b>Автор: </b> {{post.author}}</p>
+          <p class="opacity-50"><b>Дата публикации:</b> {{post.published_date}}</p>
+          <hr />
+          <div class="d-flex justify-content-end">
+            <input type=button value="Назад" class="btn btn-outline-dark me-2" onclick="history.go(-1)">Cancel</button>">
+            {% if is_favorite %}
+              <form action="{% url 'del_from_favorites' post.id %}" method="post">
+                  {% csrf_token %}
+                  <input type="submit" class="btn btn-outline-primary" value="Удалить из избранного">
+              </form>
             {% else %}
-              <a class="btn btn-success" href="{% url 'add_to_favorite' post_id=post.id %}">Нравится</a>
+                <form action="{% url 'add_to_favorites' post.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-success" value="Добавить в избранное">
+                </form>
             {% endif %}
-
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </div>
-{% endblock body %}
+{% endblock %}

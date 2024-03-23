@@ -29,7 +29,7 @@
             </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link {% block bookmark-active %}{% endblock %}" href="{% url 'bookmark' %}">Закладки</a>
+                <a class="nav-link {% block bookmark-active %}{% endblock %}" href="{% url 'bookmarks' %}">Закладки</a>
               </li>
             {% endif %}
             <li class="nav-item">
