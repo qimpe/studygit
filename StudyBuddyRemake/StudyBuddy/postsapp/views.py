@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
-from .models import Post
+from .models import Post, FavoritePost
 
 
 # Create your views here.
@@ -39,8 +39,28 @@ class postsDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = context["post"].title
+        context['is_favorite'] = FavoritePost.objects.filter(user=self.request.user, post=self.get_object()).exists()
         return context
 
+def bookmarks(request):
+    related_posts = FavoritePost.objects.filter(user=request.user)
+    posts = [favorite.post for favorite in related_posts]
+    return render(request, 'postsapp/bookmark.html', {'posts': posts})
 
 def create(request):
     return render(request, "postsapp/createPost.html")
+
+
+def add_to_favorites(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if FavoritePost.objects.filter(user=request.user, post=post).exists():
+        pass
+    else:
+        FavoritePost.objects.create(user=request.user, post=post)
+    return redirect('posts-detail', pk=post_id)
+
+def del_from_favorites(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if FavoritePost.objects.filter(user=request.user, post=post).exists():
+        FavoritePost.objects.filter(user=request.user, post=post).delete()
+    return redirect('posts-detail', pk=post_id)
