@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block title %}Избранное{% endblock %}
+{% block bookmark-active %}active{% endblock %}
+{% block body %}
+
+<div class="m-3">
+  <div class="row g-2">
+    {% for i in posts %}
+    <div class="col-12 col-md-7 text-justify">
+      <div class="card shadow">
+        <div class="card-header">
+          <span>{{ i.title }}</span>
+        </div>
+        <div class="card-body text-justify">
+          <p><b>Обо мне: </b>{{ i.about }}</p>
+          <p><b>Кого я ищу: </b>{{ i.goalperson }}</p>
+          <p><b>Дополнительно: </b>{{ i.additional }}</p>
+          <div class="d-flex justify-content-end">
+            <a class="btn btn-success" href="{% url 'posts-detail' i.id %}">
+              Перейти к посту
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

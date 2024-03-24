@@ -10,55 +10,54 @@
     <ul class="dropdown-menu">
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Английский'; document.getElementById('filterbtn').click();">Английский</a>
+          onclick="document.getElementById('filterSearch').value='Английский;'; document.getElementById('filterbtn').click();">Английский</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Немецкий'; document.getElementById('filterbtn').click();">Немецкий</a>
+          onclick="document.getElementById('filterSearch').value='Немецкий;'; document.getElementById('filterbtn').click();">Немецкий</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Испанский'; document.getElementById('filterbtn').click();">Испанский</a>
+          onclick="document.getElementById('filterSearch').value='Испанский;;'; document.getElementById('filterbtn').click();">Испанский</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Другой язык'; document.getElementById('filterbtn').click();">Другой
-          язык</a>
+          onclick="document.getElementById('filterSearch').value='Другие языки;'; document.getElementById('filterbtn').click();">Другие
+          языки</a>
       </li>
       <li>
         <hr class="dropdown-divider" />
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Подготовка к ЕГЭ'; document.getElementById('filterbtn').click();">Подготовка
+          onclick="document.getElementById('filterSearch').value='Подготовка к ЕГЭ;'; document.getElementById('filterbtn').click();">Подготовка
           к ЕГЭ</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Подготовка к ОГЭ'; document.getElementById('filterbtn').click();">Подготовка
+          onclick="document.getElementById('filterSearch').value='Подготовка к ОГЭ;'; document.getElementById('filterbtn').click();">Подготовка
           к ОГЭ</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Подготовка к международному экзамену'; document.getElementById('filterbtn').click();">Подготовка
+          onclick="document.getElementById('filterSearch').value='Подготовка к международному экзамену;'; document.getElementById('filterbtn').click();">Подготовка
           к международным экзаменам</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Программирование'; document.getElementById('filterbtn').click();">Программирование</a>
+          onclick="document.getElementById('filterSearch').value='Программирование;'; document.getElementById('filterbtn').click();">Программирование</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Общие цели'; document.getElementById('filterbtn').click();">Общие
-          цели</a>
+          onclick="document.getElementById('filterSearch').value='Саморазвитие;'; document.getElementById('filterbtn').click();">Саморазвитие</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Друг'; document.getElementById('filterbtn').click();">Друг</a>
+          onclick="document.getElementById('filterSearch').value='Дружба;'; document.getElementById('filterbtn').click();">Дружба</a>
       </li>
       <li>
         <a class="dropdown-item" href="#"
-          onclick="document.getElementById('filterSearch').value='Спорт'; document.getElementById('filterbtn').click();">Спорт</a>
+          onclick="document.getElementById('filterSearch').value='Спорт;'; document.getElementById('filterbtn').click();">Спорт</a>
       </li>
       <form action="{% url 'postslink' %}" class="d-none" method="get">
         <input type="search" id="filterSearch" name="filter" />
@@ -66,7 +65,7 @@
       </form>
     </ul>
   </div>
-  <a class="btn btn-outline-info" href="{% url 'postslink' %}">Обновить</a>
+  <a class="btn btn-outline-primary" href="{% url 'postslink' %}">Обновить</a>
 </div>
 
 <div class="m-3">
@@ -94,4 +93,10 @@
   </div>
 </div>
 
+{% endblock %}
+{% block publish %}
+<div class="d-flex justify-content-end sticky-bottom p-3">
+  <a href="{% if user.is_authenticated %}{% url 'users:profile' %}{% else %}{% url 'users:login' %}{% endif %}"
+    class="btn btn-primary">Опубликовать</a>
+</div>
 {% endblock %}
