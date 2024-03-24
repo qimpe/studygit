@@ -18,24 +18,31 @@ def bookmark(request):
     return render(request, "bookmark.html", {"data": related_posts})
 
 
-def add_to_favorite(request, post_id=0):
+def is_in_favorite(func):
+    def check(request, post_id):
+        post = Post.objects.get(pk=post_id)
+        favorite = FavoritePost.objects.filter(
+            user_id=request.user.id, post_id=post_id
+        ).exists()
+        ic(favorite)
+        data = {"favorite": favorite, "post_id": post_id}
+        return func(request, data)
+
+    return check
+
+
+@is_in_favorite
+def add_to_favorite(request, data):
+    post_id = data["post_id"]
     post = get_object_or_404(Post, id=post_id)
     favorite_post = FavoritePost.objects.create(user=request.user, post=post)
     favorite_post.save()
+    # return redirect("posts-detail", pk=post_id)
+    return render(request, "posts-detail", pk=post_id, context={"favorite": True})
+
+
+@is_in_favorite
+def delete_from_favorite(request, data):
+    post_id = data["post_id"]
+    FavoritePost.objects.filter(user_id=request.user.id, post_id=post_id).delete()
     return redirect("posts-detail", pk=post_id)
-
-
-def delete_from_favorite(request, post_id=0):
-    favorite_posts = FavoritePost.objects.filter(
-        user_id=request.user.id, post_id=post_id
-    ).delete()
-    return redirect("bookmark")
-
-
-def is_in_favorite(request, post_id):
-    post = Post.objects.get(pk=post_id)
-    favorite = FavoritePost.objects.filter(
-        user_id=request.user.id, post_id=post_id
-    ).exists()
-    data = {"favorite": favorite}
-    return render(request, "posts-detail.html", data)

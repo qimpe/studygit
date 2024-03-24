@@ -8,55 +8,101 @@
     <div class="d-block d-md-none text-center display-4 fw-bold mb-2">
         Начните новое хобби с <span class="text-primary">нового</span> друга
     </div>
-    <div class="row g-1 d-flex align-items-center">
+    <div class=" row g-1 d-flex align-items-center">
         <div class="col-6">
             <div class="card h-100 border-0">
-                <div class="h-50 align-items-end d-none d-md-flex">
+                <div class="h-50 align-items-end d-none d-md-flex" style="margin-left: 3em;">
                     <h5 class="display-3 fw-bold">Начните новое хобби с&nbsp;<span
                             class="text-primary">нового</span>&nbsp;друга.</h5>
                 </div>
-                <p class="fs-3 fw-medium">Even <mark>now</mark>, your enemies are eagerly flipping through books</p>
+                <p class="fs-3 fw-medium" style="margin-left: 2em">Even <mark>now</mark>, your enemies are eagerly
+                    flipping through books</p>
             </div>
         </div>
         <div class="col-6">
             <div class="card h-100 border-0">
                 <img src="{% static 'homepagepicture.svg' %}" alt="." class="align-self-center img-fluid"
-                    style="width: 80%; box-shadow: 10px 5px 5px grey;">
+                    style="width: 60%; box-shadow: 10px 5px 5px grey;">
+            </div>
+        </div>
+        <div class="containter mt-5" style="margin-left: 3em; width: 90%;">
+            <ul class="list-group align-self-center">
+                <li class="list-group-item  border-black"><img src="{% static 'correct-mark.svg' %}" width="40px">
+                    <span class="fw-bold" style="margin-left: 10px;font-size: 200%;">Коментарии</span>
+                    <p class="text-end mb-0" style="font-size: x-large;">Помогут понять, подходит ли тебе напарник. <br>
+                        <b>Просто.</b>
+                    </p>
+                </li>
+                <li class="list-group-item  border-black"><img src="{% static 'correct-mark.svg' %}" width="40px">
+                    <span class="fw-bold" style="margin-left: 10px;font-size: 200%;">Фильтры</span>
+                    <p class="text-end mb-0" style="font-size:x-large;">Найди человека со схожими интересами.<br>
+                        <b>Быстро.</b>
+                    </p>
+                </li>
+                <li class="list-group-item  border-black"><img src="{% static 'correct-mark.svg' %}" width="40px">
+                    <span class="fw-bold" style="margin-left: 10px;font-size: 200%;">Анкеты</span>
+                    <p class="text-end mb-0" style="font-size: x-large;">Расскажи о себе и своих целях.<br>
+                        <b>Удобно.</b>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid mt-5 d-flex align-items-center" style="width: 70%;">
+            <div class=" row row-cols-2 row-cols-md-3 g-3 ">
+                <div class="col ">
+                    <div class="card shadow-lg" style="width: 400px; height: 200px; border-radius: 2em;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center" style="font-size: 250%;margin-left: 10px;">Английский
+                                язык</h5>
+
+                            <div class="container-fluid position-absolute bottom-0 start-0">
+                                <p
+                                    style=" margin-left: 5px; background-color: rgb(20, 255, 0);border-radius: 10px;color: aliceblue;width: 22%;">
+                                    <span style=" margin-left: 5px;"><b>#english</b></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-lg" style="width: 400px; height: 200px; border-radius: 2em;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center" style="font-size: 250%;margin-left: 10px;">Подготовка к
+                                ЕГЭ</h5>
+
+                            <div class="container-fluid position-absolute bottom-0 start-0">
+                                <p
+                                    style=" margin-left: 5px; background-color: rgb(255, 115, 0);border-radius: 10px;color: aliceblue;width: 22%;">
+                                    <span style=" margin-left: 15px;"><b>#exam</b></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-lg" style="width: 400px; height: 200px; border-radius: 2em;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center" style="font-size: 250%;margin-left: 10px;">Спорт</h5>
+
+                            <div class="container-fluid position-absolute bottom-0 start-0">
+                                <p
+                                    style=" margin-left: 5px; background-color: rgb(0, 106, 255);border-radius: 10px;color: aliceblue;width: 22%;">
+                                    <span style=" margin-left: 15px;"><b>#sport</b></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="containter my-5">
-    <div class="row justify-content-center">
-        <div class=" col-sm-2 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-2 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
 
 
 {% endblock %}
