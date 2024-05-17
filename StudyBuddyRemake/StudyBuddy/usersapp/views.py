@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -6,7 +8,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import render
 from django.views.generic import CreateView, UpdateView
-
+from django.core.mail import send_mail
+from django.conf import settings
+from .models import ReceivedCode
+import time
 from .forms import LoginUserForm, RegisterUserForm, ProfileUserForm
 
 
@@ -47,11 +52,11 @@ def logout_user(request):
     return HttpResponseRedirect(reverse('users:login'))
 
 
-class RegisterUser(CreateView):
+"""class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'register.html'
     extra_context = {'title': 'Регистрация'}
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy('users:login')"""
 
 class ProfileUser(LoginRequiredMixin, UpdateView):
     model = get_user_model()
@@ -65,14 +70,23 @@ class ProfileUser(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-"""def register(request):
+def register(request):
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
             user.save()
+            code = random.randint(1000, 9999)
+            ReceivedCode.objects.create(user=user, code=code)
+            print(ReceivedCode.objects.all())
+            time.sleep(5)
+            ReceivedCode.objects.filter(user=user).delete()
+            print(ReceivedCode.objects.all())
             return render(request, 'profile.html')
+        else:
+            send_mail(
+                'It is really important', 'Вы совершили ошибку при регистрации!', 'settings.EMAIL_HOST_USER', ['arsenijtam@gmail.com'], fail_silently=False
+            )
     else:
         form = RegisterUserForm
-    return render(request, 'register.html', {'form': form})"""
+    return render(request, 'register.html', {'form': form})
